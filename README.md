@@ -29,21 +29,19 @@ In this internship task, you will develop and implement a Neural Style Transfer 
 
 ## Task Description
 
-Over the course of this four‑week assignment, you will tackle each component of the Neural Style Transfer pipeline in detail:
-
-1. **Week 1 – Foundations and Preprocessing**
+1. **Foundations and Preprocessing**
 
    * Set up the development environment with Python 3.9+, PyTorch, torchvision, OpenCV, and other dependencies.
    * Implement image loading and resizing functions that preserve aspect ratio and handle edge cases like missing files.
    * Develop normalization transforms using ImageNet mean and standard deviation, ensuring consistency with pre-trained model expectations.
 
-2. **Week 2 – Feature Extraction and Model Wrapper**
+2. **Feature Extraction and Model Wrapper**
 
    * Load a pre-trained VGG19 network and freeze its parameters.
    * Identify which convolutional blocks correspond to low-level texture (style) and high-level content features.
    * Build a custom `StyleContentExtractor` module that slices VGG19 at specified layer indices and returns activations for content and style layers.
 
-3. **Week 3 – Loss Computation and Optimization**
+3. **Loss Computation and Optimization**
 
    * Write functions to compute the Gram matrix for capturing correlations between feature channels.
    * Define content loss (MSE between content features of the generated image and the original content image).
@@ -51,12 +49,11 @@ Over the course of this four‑week assignment, you will tackle each component o
    * Incorporate total variation loss to reduce noise and improve visual coherence.
    * Choose and configure an optimizer (L-BFGS or Adam) to iteratively update the generated image tensor.
 
-4. **Week 4 – Experimentation, Output Generation, and Documentation**
+4. **Experimentation, Output Generation, and Documentation**
 
    * Run experiments at different image resolutions (256×256, 512×512, 1024×1024) and compare results.
    * Vary the ratio of content to style weights (e.g., 1e5:1e3, 1e4:1e4) and observe the aesthetic trade-offs.
    * Save final stylized images in an organized directory structure along with intermediate checkpoints if desired.
-   * Draft a comprehensive README (this file), usage examples, and inline code comments.
    * Package the project for sharing: include a `requirements.txt`, clear folder hierarchy (`data/`, `models/`, `scripts/`, `outputs/`), and sample command-line invocations.
 
 ## Deliverables
