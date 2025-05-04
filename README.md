@@ -7,7 +7,7 @@
 **DURATION**: 4 WEEKS
 
 *Project Images*:
-*NST-outputs.png*
+*NST-outputs*
 ![NST-outputs.png](https://github.com/digantk31/NEURAL-STYLE-TRANSFER/blob/main/project%20images/NST-outputs.png)
 
 ---
