@@ -73,7 +73,7 @@ Over the course of this four‑week assignment, you will tackle each component o
 1. Clone the repository:
 
    ```bash
-   git clone https://github.com/yourusername/Neural-Style-Transfer.git
+   git clone https://github.com/digantk31/NEURAL-STYLE-TRANSFER.git
    cd Neural-Style-Transfer
    ```
 2. Install dependencies:
@@ -93,15 +93,3 @@ Over the course of this four‑week assignment, you will tackle each component o
                   --output outputs/styled.jpg \
                   --size 512 --steps 300 --content-weight 1e5 --style-weight 1e4
    ```
-
-## Expected Outcomes and Observations
-
-By the end of this task, you should have:
-
-* A functioning NST implementation that can transform any input photograph into a stylized image reflecting the brushstrokes, textures, and color palettes of a chosen art reference.
-* Insight into how deep neural networks encode visual information at different layers, and how balancing content versus style objectives affects the final output.
-* A polished codebase with clear documentation, enabling peers to reproduce your results or experiment with new style images.
-
----
-
-*Good luck with your Neural Style Transfer internship project!*
