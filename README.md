@@ -1,10 +1,14 @@
 # NEURAL-STYLE-TRANSFER
 
-**Company:** CODTECH IT SOLUTIONS
-**Intern:** Digant Kathiriya
-**Intern ID:** CODF51
-**Domain:** Artificial Intelligence Markup Language
-**Duration:** 4 Weeks
+**COMPANY**: CODTECH IT SOLUTIONS  
+**NAME**: DIGANT KATHIRIYA  
+**INTERN ID**: CODF51  
+**DOMAIN**: Artificial Intelligence Markup Language  
+**DURATION**: 4 WEEKS
+
+*Project Images*:
+*NST-outputs.png*
+![NST-outputs.png](https://github.com/digantk31/NEURAL-STYLE-TRANSFER/blob/main/project%20images/NST-outputs.png)
 
 ---
 
