@@ -62,7 +62,7 @@ Over the course of this four‑week assignment, you will tackle each component o
 ## Deliverables
 
 * **`README.md`**: Detailed project overview, installation steps, usage examples, and explanation of design decisions.
-* **`nst.py` or Notebook**: Well-commented script or Jupyter notebook implementing the Neural Style Transfer pipeline end to end.
+* **`nst.py`**: Well-commented script or Jupyter notebook implementing the Neural Style Transfer pipeline end to end.
 * **`data/` Folder**: Placeholders for content and style images, along with any sample files.
 * **`models/` Folder**: Saved PyTorch model definitions or state dictionaries if applicable.
 * **`outputs/` Folder**: At least five stylized images demonstrating different style and content combinations.
