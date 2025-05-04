@@ -1,117 +1,103 @@
-<br>
-<img src="https://github.com/nazianafis/Resources/blob/main/NST/NST-gif.gif" alt="header" align="right" width="270"/>
+# NEURAL-STYLE-TRANSFER
 
-# Neural-Style-Transfer (NST)
+**Company:** CODTECH IT SOLUTIONS
+**Intern:** Digant Kathiriya
+**Intern ID:** CODF51
+**Domain:** Artificial Intelligence Markup Language
+**Duration:** 4 Weeks
 
-Neural Style Transfer is the ability to create a new image (known as a pastiche) based on two input images: one representing the content and the other representing the artistic style.
+---
 
-This repository contains a lightweight PyTorch implementation of art style transfer discussed in the seminal paper by [Gatys et al.](https://www.cv-foundation.org/openaccess/content_cvpr_2016/papers/Gatys_Image_Style_Transfer_CVPR_2016_paper.pdf) To make the model faster and more accurate, a pre-trained VGG19 model is used.
+## Project Overview
 
-##### 🔗Check out [this article](https://nazianafis.medium.com/a-lightweight-pytorch-implementation-of-neural-style-transfer-86603e5eb551) by me regarding the same.
+In this internship task, you will develop and implement a Neural Style Transfer (NST) pipeline using PyTorch. Neural Style Transfer is a technique that blends the content of one image with the artistic style of another, producing visually striking results that merge real-world photographs with painterly brushstrokes or abstract patterns. Over the next four weeks, you will journey through the fundamentals of deep feature extraction, loss function design, and optimization routines that drive the NST process. By the end of this project, you will deliver a fully documented codebase capable of transforming arbitrary content images into stylized masterpieces, alongside sample outputs that demonstrate varying style and content weightings.
 
-## Table of Contents
+## Objectives
 
-1. [Overview](#overview)
-2. [How does it work?](#working)
-3. [File Description](#description)
-4. [Getting Started](#getting-started)
-    1. [Dependencies](#dependencies)
-    2. [Usage](#usage)
-5. [Output](#output)
-6. [Acknowledgements](#ack)
-7. [License](#license)
-8. [Star History](#star-history)
+1. **Understand the NST Algorithm**: Gain a thorough grasp of how pre-trained convolutional neural networks (CNNs) like VGG19 capture content and style representations at different layers.
+2. **Implement Preprocessing and Postprocessing Pipelines**: Build robust functions to load, resize, normalize, and convert images between NumPy arrays and PyTorch tensors.
+3. **Extract Deep Feature Maps**: Wrap a VGG19 feature extractor to retrieve intermediate activations corresponding to designated content and style layers.
+4. **Design Loss Functions**: Construct content loss (mean-squared error between feature maps), style loss (mean-squared error between Gram matrices of feature maps), and total variation loss (to encourage spatial smoothness).
+5. **Optimize Image Pixels**: Set up an optimization loop using L-BFGS (or alternative optimizers) that updates the generated image tensor to minimize the combined loss.
+6. **Experiment with Hyperparameters**: Explore different weights for content, style, and total variation losses, as well as varying numbers of optimization steps and image resolutions.
+7. **Present Sample Outputs**: Generate at least five distinct stylized images using different source photographs and style references, documenting observations about convergence speed and visual fidelity.
+8. **Write Comprehensive Documentation**: Provide clear, step-by-step instructions for installation, usage, and parameter tuning so that others can reproduce and extend your work.
 
-## Overview <a name="overview"></a>
+## Task Description
 
-Neural style transfer is a technique that is used to take two images—a content image and a style reference image—and blend them together so that output image looks like the content image, but “painted” in the style of the style reference image.
+Over the course of this four‑week assignment, you will tackle each component of the Neural Style Transfer pipeline in detail:
 
-## How does it work?<a name="working"></a>
+1. **Week 1 – Foundations and Preprocessing**
 
-1. We take content and style images as input and pre-process them.
-2. Next, we load VGG19 which is a pre-trained CNN (convolutional neural network).
-    1. Starting from the network's input layer, the first few layer activations represent low-level features like colors, and textures. As we step through the network, the final few layers represent higher-level features—like eyes.
-    2. In this case, we use `conv1_1`, `conv2_1`, `conv3_1`, `conv4_1`, `conv5_1` for style representation, and `conv4_2` for content representation.    
-![](https://github.com/nazianafis/Resources/blob/main/NST/NST-architecture.png)
+   * Set up the development environment with Python 3.9+, PyTorch, torchvision, OpenCV, and other dependencies.
+   * Implement image loading and resizing functions that preserve aspect ratio and handle edge cases like missing files.
+   * Develop normalization transforms using ImageNet mean and standard deviation, ensuring consistency with pre-trained model expectations.
 
-3. We begin by cloning the content image and then iteratively changing its style. Then, we set our task as an optimization problem where we try to minimize:
-    1. **content loss**, which is the L2 distance between the content and the generated image,
-    2. **style loss**, which is the sum of L2 distances between the Gram matrices of the representations of the content image and the style image, extracted from different layers of VGG19.
-    3. **total variation loss**, which is used for spatial continuity between the pixels of the generated image, thereby denoising it and giving it visual coherence.
-4. Finally, we set our gradients and optimize using the L-BFGS algorithm to get the desired output.
+2. **Week 2 – Feature Extraction and Model Wrapper**
 
-## Getting Started <a name="getting-started"></a>
+   * Load a pre-trained VGG19 network and freeze its parameters.
+   * Identify which convolutional blocks correspond to low-level texture (style) and high-level content features.
+   * Build a custom `StyleContentExtractor` module that slices VGG19 at specified layer indices and returns activations for content and style layers.
 
-### File Description <a name="description"></a>
+3. **Week 3 – Loss Computation and Optimization**
 
-    Neural-Style-Transfer
-        ├── data
-        |   ├── content-images
-        |   ├── style-images
-        ├── models/definitions     
-        │   ├── vgg19.py   <-- VGG19 model definition
-        ├── NST.py  <-- the main python file
-        ├── LICENSE
-        └── README.md
+   * Write functions to compute the Gram matrix for capturing correlations between feature channels.
+   * Define content loss (MSE between content features of the generated image and the original content image).
+   * Define style loss (MSE between Gram matrices of generated and style images across multiple layers).
+   * Incorporate total variation loss to reduce noise and improve visual coherence.
+   * Choose and configure an optimizer (L-BFGS or Adam) to iteratively update the generated image tensor.
 
-### Dependencies <a name="dependencies"></a>
-*    Python 3.9+
-*    Framework: PyTorch
-*    Libraries: os, numpy, cv2, matplotlib, torchvision
+4. **Week 4 – Experimentation, Output Generation, and Documentation**
 
-### Usage <a name="usage"></a>
+   * Run experiments at different image resolutions (256×256, 512×512, 1024×1024) and compare results.
+   * Vary the ratio of content to style weights (e.g., 1e5:1e3, 1e4:1e4) and observe the aesthetic trade-offs.
+   * Save final stylized images in an organized directory structure along with intermediate checkpoints if desired.
+   * Draft a comprehensive README (this file), usage examples, and inline code comments.
+   * Package the project for sharing: include a `requirements.txt`, clear folder hierarchy (`data/`, `models/`, `scripts/`, `outputs/`), and sample command-line invocations.
 
-```
-    $ pip install -r requirements.txt
-```
+## Deliverables
 
-#### To implement Neural Style Transfer on images of your own:
+* **`README.md`**: Detailed project overview, installation steps, usage examples, and explanation of design decisions.
+* **`nst.py` or Notebook**: Well-commented script or Jupyter notebook implementing the Neural Style Transfer pipeline end to end.
+* **`data/` Folder**: Placeholders for content and style images, along with any sample files.
+* **`models/` Folder**: Saved PyTorch model definitions or state dictionaries if applicable.
+* **`outputs/` Folder**: At least five stylized images demonstrating different style and content combinations.
+* **`requirements.txt`**: Exact versions of Python packages used.
 
-1. Clone the repository and move to the downloaded folder:
-```
-    $  git clone https://github.com/nazianafis/Neural-Style-Transfer
-```
-```
-    $  cd Neural-Style-Transfer
-```
-2. Move your content/style image(s) to their respective folders inside the `data` folder.
+## Getting Started
 
-3. Go to `NST.py`, and in it, set the `PATH` variable to your downloaded folder. Also set `CONTENT_IMAGE`, `STYLE_IMAGE` variables as your desired images:
-```
-    $ PATH = <your_path>
-   
-    $ CONTENT_IMAGE = <your_content_image_name>
-    $ STYLE_IMAGE = <you_style_image_name>
-```
-4. Run `NST.py`:
-```
-    $ python NST.py
-```
-5. Find your generated image in the `output-images` folder inside `data`.
+1. Clone the repository:
 
-## Output <a name="output"></a>
+   ```bash
+   git clone https://github.com/yourusername/Neural-Style-Transfer.git
+   cd Neural-Style-Transfer
+   ```
+2. Install dependencies:
 
-The following images were generated using no image manipulation program(s) other than the code described in this article.
+   ```bash
+   pip install -r requirements.txt
+   ```
+3. Prepare your images:
 
-<img src="https://github.com/nazianafis/Resources/blob/main/NST/NST-outputs.png" alt="content" width="700"/>
+   * Drop your content image(s) into `data/content/`
+   * Drop your style image(s) into `data/style/`
+4. Run the script or notebook:
 
+   ```bash
+   python nst.py --content data/content/your_photo.jpg \
+                  --style data/style/your_style.jpg \
+                  --output outputs/styled.jpg \
+                  --size 512 --steps 300 --content-weight 1e5 --style-weight 1e4
+   ```
 
-## Acknowledgements <a name="ack"></a>
+## Expected Outcomes and Observations
 
-These are some of the resources I referred to while working on this project. You might want to check them out.
+By the end of this task, you should have:
 
-* PyTorch's [tutorial on NST](https://pytorch.org/tutorials/advanced/neural_style_tutorial.html).
-* Aleksa Gordic's [implementation](https://github.com/gordicaleksa/pytorch-neural-style-transfer).
-* The original paper on neural style transfer by [Gatys et al](https://www.cv-foundation.org/openaccess/content_cvpr_2016/papers/Gatys_Image_Style_Transfer_CVPR_2016_paper.pdf) .
-* The original paper on [VGG19](https://arxiv.org/abs/1409.1556).
-* [Wikimedia](https://commons.wikimedia.org/wiki/Category:Images), [Unsplash](https://unsplash.com/) for all the content and style images.
+* A functioning NST implementation that can transform any input photograph into a stylized image reflecting the brushstrokes, textures, and color palettes of a chosen art reference.
+* Insight into how deep neural networks encode visual information at different layers, and how balancing content versus style objectives affects the final output.
+* A polished codebase with clear documentation, enabling peers to reproduce your results or experiment with new style images.
 
+---
 
-## License <a name="license"></a>
-
-[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
-
-
-## Star History <a name="star-history"></a>
-
-[![Star History Chart](https://api.star-history.com/svg?repos=nazianafis/Neural-Style-Transfer&type=Date)](https://star-history.com/#nazianafis/Neural-Style-Transfer&Date)
+*Good luck with your Neural Style Transfer internship project!*
